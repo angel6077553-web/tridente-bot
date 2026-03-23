@@ -54,7 +54,7 @@ function getResponse(text) {
 const server = restify.createServer();
 server.use(restify.plugins.bodyParser());
 
-server.post('/api/messages', (req, res) => {
+server.post('/api/messages', async (req, res) => {
     adapter.processActivity(req, res, async (context) => {
         if (context.activity.type === 'message') {
             const userText = context.activity.text || '';
