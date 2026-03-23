@@ -51,11 +51,8 @@ function getResponse(text) {
     return '🏎️ Puedo contarte sobre el LaFerrari, el Porsche 918 Spyder o el McLaren P1. Pregúntame sobre velocidad, potencia, precio, producción o cuál es el mejor. ¿Qué quieres saber?';
 }
 
-const server = restify.createServer();
-server.use(restify.plugins.bodyParser());
-
 server.post('/api/messages', async (req, res) => {
-    adapter.processActivity(req, res, async (context) => {
+    await adapter.processActivity(req, res, async (context) => {
         if (context.activity.type === 'message') {
             const userText = context.activity.text || '';
             const reply = getResponse(userText);
